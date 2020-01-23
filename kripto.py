@@ -1,4 +1,5 @@
 from bitcoinrpc.authproxy import AuthServiceProxy
+from ip2geotools.databases.noncommercial import DbIpCity
 import time
 
 rpc_connection = AuthServiceProxy("http://student:WYVyF5DTERJASAiIiYGg4UkRH@blockchain.oss.unist.hr:8332")
@@ -33,6 +34,8 @@ def mreza():
     for i in (peer):
         print("Node",peer.index(i)+1," ","ID:",i["id"]," ","Adresa i port:",i["addr"])
     print("*************************************************************************************************")
+    ip=input("Unesi IP adresu node-a za koji te zanimaju lokacijske informacije:")
+    print(DbIpCity.get(ip, api_key='free'))
 
 def blokexplore():
     blok=int(input("Unesi visinu zeljenog bloka:"))
@@ -65,5 +68,5 @@ def blokexplore():
     print ("________________________________________________________________________________________________")
 
 #blokinfo()
-#mreza()
-blokexplore()
+mreza()
+#blokexplore()
